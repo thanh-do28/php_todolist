@@ -13,7 +13,7 @@ if (isset($_GET["id"])) {
         $res->execute([$id]);
 
         if ($res) {
-            header("Location: ../todo_index.php?mess=success");
+            header("Location: ../todo_index.php?mess=ok");
         } else {
             header("Location: ../todo_index.php?mess=error");
         }
