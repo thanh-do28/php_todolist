@@ -79,23 +79,9 @@ require 'db_todos.php';
         $(document).ready(function() {
             $(".check-box").click(function() {
                 const id = $(this).attr("todo_id")
+                document.location.href = `php/update.php?id=${id}`
                 // console.log(id);
-                $.post("php/update.php", {
-                        id: id
-                    },
-                    (data) => {
-                        console.log(data.split(""));
-                        if (data != 'error') {
-                            const h2 = $(this).next();
-                            let id1 = data.split("");
-                            if (id1[id1.length - 1] == "1") {
-                                h2.removeClass('checked');
-                            } else {
-                                h2.addClass('checked');
-                            }
-                        }
-                    }
-                );
+
             })
         })
 
@@ -105,15 +91,10 @@ require 'db_todos.php';
             $(".remove-to-do").click(function() {
                 const id = $(this).attr("id")
                 // console.log(id);
-                $.post("php/delete.php", {
-                        id: id
-                    },
-                    (data) => {
-                        // console.log(data);
-                        if (data) {
-                            $(this).parent().hide(600);
-                        }
-                    })
+                document.location.href = `php/delete.php?id=${id}`
+
+                $(this).parent().hide(600);
+
                 $("#presently").css("display", "block");
                 $("#hide").css("display", "none");
                 $('input[name=titleUpdate]').val("")

@@ -1,10 +1,10 @@
 <?php
-if (isset($_POST['id'])) {
+if (isset($_GET['id'])) {
     require_once "../db_todos.php";
-    $id = $_POST['id'];
+    $id = $_GET['id'];
     echo $id;
     if (empty($id)) {
-        echo 'error';
+        header("Location: ../todo_index.php?mess=error");
     } else {
         $todos = $conn->prepare("SELECT id, checked FROM todos WHERE id = ?");
         $todos->execute([$id]);
@@ -13,15 +13,15 @@ if (isset($_POST['id'])) {
         $checked = $todo['checked'];
         $aChecked = !$checked;
 
-
+        header("Location: ../todo_index.php?mess=success");
         $sql = "UPDATE todos SET checked= ? WHERE id = ?";
         $statement = $conn->prepare($sql);
         $res = $statement->execute([$aChecked, $aId]);
 
         if ($res) {
-            echo $checked;
+            header("Location: ../todo_index.php?mess=success");
         } else {
-            echo "error";
+            header("Location: ../todo_index.php?mess=error");
         }
         $conn = null;
         exit();

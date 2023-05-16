@@ -1,25 +1,25 @@
 <?php
 
-if (isset($_POST["id"])) {
+if (isset($_GET["id"])) {
     require_once "../db_todos.php";
 
-    $id = $_POST['id'];
+    $id = $_GET['id'];
 
     if (empty($id)) {
-        echo "erro";
+        header("Location: ../todo_index.php?mess=error");
     } else {
         $sql = "DELETE FROM todos WHERE id = ?";
         $res = $conn->prepare($sql);
         $res->execute([$id]);
 
         if ($res) {
-            echo 1;
+            header("Location: ../todo_index.php?mess=success");
         } else {
-            echo 0;
+            header("Location: ../todo_index.php?mess=error");
         }
         $conn = null;
         exit();
     }
 } else {
-    header("Location: ../index.php?mess=error");
+    header("Location: ../todo_index.php?mess=error");
 }
