@@ -1,16 +1,22 @@
 <?php
+session_start();
 
 if (isset($_POST["title"])) {
 
     require_once "../db_todos.php";
 
     $title = $_POST["title"];
+    $userid = $_SESSION["userid"];
+    echo $userid;
+    echo $title;
     if (empty($title)) {
         header("Location: ../todo_index.php?mess=error");
+    } else if (empty($userid)) {
+        header("Location: ../todo_index.php?messe=error");
     } else {
-        $sql = "INSERT INTO todos(title) VALUE(?)";
+        $sql = "INSERT INTO todos(title,user_id) VALUE(?,?)";
         $statement = $conn->prepare($sql);
-        $res = $statement->execute([$title]);
+        $res = $statement->execute([$title, $userid]);
         if ($res) {
             header("Location: ../todo_index.php?mess=success");
         } else {
