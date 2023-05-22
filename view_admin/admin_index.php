@@ -34,7 +34,7 @@ session_start();
 
                     <div class="navbar-left">
                         <button class="add_user">Add user</button>
-                        <a class="nav-link" href="#"> Liên kết 2 </a>
+                        <button class="add_admin">Add user</button>
                         <a class="nav-link" href="#"> Liên kết 3 </a>
                         <a class="nav-link" href="#"> Liên kết 4 </a>
                         <a class="nav-link" href="#"> Liên kết 5 </a>
@@ -170,6 +170,47 @@ session_start();
             </div>
         </div>
 
+        <!-- admin_table -->
+        <?php
+        if (!empty($_SESSION["adminid"])) {
+            $admins = $conn->query("SELECT * FROM admin ORDER BY id ASC");
+            $adminlist = [];
+            while ($admin = $admins->fetch(PDO::FETCH_ASSOC)) {
+                array_push($adminlist, $admin);
+            };
+        }
+        ?>
+        <div class="container_admin">
+            <table>
+                <caption> Admin table</caption>
+                <thead>
+                    <tr>
+                        <th class="primary user_id">user_id</th>
+                        <th class="primary">name</th>
+                        <th class="primary">username</th>
+                        <th class="primary">password</th>
+                        <th class="primary edit">edit/dele</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($adminlist)) {
+                        foreach ($adminlist as $admin) {
+                    ?>
+                            <tr id="<?php echo $admin["id"]; ?>">
+                                <td class="admin_id"><?php echo $admin["id"]; ?></td>
+                                <td class="name"><?php echo $admin["name"]; ?></td>
+                                <td class="username"><?php echo $admin["username"]; ?></td>
+                                <td class="password"><?php echo $admin["password"]; ?></td>
+                                <td>
+                                    <button class="edit_admin">edit</button>
+                                    <button class="dele_admin">dele</button>
+                                </td>
+                            </tr>
+                    <?php }
+                    } ?>
+                </tbody>
+            </table>
+        </div>
         <!-- thong bao -->
 
 
@@ -273,13 +314,66 @@ session_start();
         </form>
     </div>
 
+    <!-- add admin -->
+    <div class="add_admin_sow container_add_admin">
+        <form action="../php/crud_admin/admin_add_admin.php" method="POST" autocomplete="off">
+            <div>
+                <h1>Add user</h1>
+            </div>
+            <div class="input_form">
+                <div class="row">
+                    <div class="col col-25"> <label>name</label> </div>
+                    <div class="col col-25"> <label>username</label> </div>
+                    <div class="col col-25"> <label>password</label> </div>
+
+                </div>
+                <div class="row1">
+                    <div class="col col-75"> <input type="text" id="name_add" name="name_add"> </div>
+                    <div class="col col-75"> <input type="text" id="username_add" name="username_add"></input> </div>
+                    <div class="col col-75"> <input type="password" id="password_admin_add" name="password_admin_add"></input> </div>
+                </div>
+            </div>
+            <div class="row_button">
+                <button class="button_canceladmin" type="button">Cancel</button>
+                <button class="button_submitadmin" type="submit">Confirm</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- update admin -->
+    <div class="updata_sow_admin container_update_admin">
+        <form action="../php/crud_admin/admin_update_admin.php" method="POST" autocomplete="off">
+            <div>
+                <h1>update admin</h1>
+            </div>
+            <div class="input_form">
+                <div class="row">
+                    <div class="col col-25"> <label>name</label> </div>
+                    <div class="col col-25"> <label>username</label> </div>
+                    <div class="col col-25"> <label>password</label> </div>
+
+                </div>
+                <div class="row1">
+                    <div class="col col-75" style="display: none;"> <input type="text" id="id_admin_up" name="id_admin_up"> </div>
+                    <div class="col col-75"> <input type="text" id="name_up" name="name_up"> </div>
+                    <div class="col col-75"> <input type="text" id="username_up" name="username_up"></input> </div>
+                    <div class="col col-75"> <input type="tex" id="password_admin_up" name="password_admin_up"></input> </div>
+                </div>
+            </div>
+            <div class="row_button">
+                <button class="button_canceladmin" type="button">Cancel</button>
+                <button class="button_submitadmin" type="submit">Confirm</button>
+            </div>
+        </form>
+    </div>
+
     <script src="../js/jquery-3.7.0.min.js"></script>
     <script>
-        // delete
+        // delete user
         $(document).ready(function() {
             $(".dele_user").click(function() {
                 const id = $(this).parent().parent().attr('id')
-                console.log(id);
+                // console.log(id);
                 document.location.href = `../php/crud_admin/admin_delete_user.php?id=${id}`
             })
         })
@@ -311,14 +405,6 @@ session_start();
         // add_user
         $(document).ready(function() {
             $(".add_user").click(function() {
-                const id = $(this).parent().parent().attr('id')
-                const names = $(this).parent().parent().children(".names").text()
-                const email = $(this).parent().parent().children(".email").text()
-                const pass = $(this).parent().parent().children(".password").text()
-                $('input[name=id]').val(id)
-                $('input[name=names]').val(names)
-                $('input[name=email]').val(email)
-                $('input[name=password]').val(pass)
                 $(".add_sow").css("display", "block");
             })
         })
@@ -389,6 +475,48 @@ session_start();
                 console.log(id_user);
                 $('input[name=id_todo_in_user]').val(id_user)
                 $(".insert_sow").css("display", "block");
+            })
+        })
+
+        // add_admin
+        $(document).ready(function() {
+            $(".add_admin").click(function() {
+                $(".add_admin_sow").css("display", "block");
+            })
+        })
+
+        // delete user
+        $(document).ready(function() {
+            $(".dele_admin").click(function() {
+                const id = $(this).parent().parent().attr('id')
+                // console.log(id);
+                document.location.href = `../php/crud_admin/admin_delete_admin.php?id=${id}`
+            })
+        })
+
+        // edit_admin
+        $(document).ready(function() {
+            $(".edit_admin").click(function() {
+                const id = $(this).parent().parent().attr('id')
+                const name = $(this).parent().parent().children(".name").text()
+                const username = $(this).parent().parent().children(".username").text()
+                const pass = $(this).parent().parent().children(".password").text()
+                $('input[name=id_admin_up]').val(id)
+                $('input[name=name_up]').val(name)
+                $('input[name=username_up]').val(username)
+                $('input[name=password_admin_up]').val(pass)
+                $(".updata_sow_admin").css("display", "block");
+            })
+        })
+        // button_canceladmin
+        $(document).ready(function() {
+            $(".button_canceladmin").click(function() {
+                $('input[name=id_admin_up]').val("")
+                $('input[name=name_up]').val("")
+                $('input[name=username_up]').val("")
+                $('input[name=password_admin_up]').val("")
+                $(".updata_sow_admin").css("display", "none");
+                $(".add_admin_sow").css("display", "none");
             })
         })
     </script>
