@@ -13,13 +13,13 @@ if (isset($_POST['id'])) {
         $res = $statement->execute([$value, $id]);
 
         if ($res) {
-            header("Location: ../todo_index.php?mess=success");
+            header("Location: ../view_todo/todo_index.php?mess=success");
         } else {
-            header("Location: ../todo_index.php");
+            header("Location: ../view_todo/todo_index.php");
         }
         $conn = null;
         exit();
     }
 } else {
-    header("Location: ../todo_index.php?mess=error");
+    header("Location: ../view_todo/todo_index.php?mess=error");
 }

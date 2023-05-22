@@ -6,20 +6,20 @@ if (isset($_GET["id"])) {
     $id = $_GET['id'];
 
     if (empty($id)) {
-        header("Location: ../todo_index.php?mess=error");
+        header("Location: ../view_todo/todo_index.php?mess=error");
     } else {
         $sql = "DELETE FROM todos WHERE id = ?";
         $res = $conn->prepare($sql);
         $res->execute([$id]);
 
         if ($res) {
-            header("Location: ../todo_index.php?mess=ok");
+            header("Location: ../view_todo/todo_index.php?mess=ok");
         } else {
-            header("Location: ../todo_index.php?mess=error");
+            header("Location: ../view_todo/todo_index.php?mess=error");
         }
         $conn = null;
         exit();
     }
 } else {
-    header("Location: ../todo_index.php?mess=error");
+    header("Location: ../view_todo/todo_index.php?mess=error");
 }

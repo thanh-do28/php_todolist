@@ -9,7 +9,7 @@ if (isset($_POST["uname"]) || isset($_POST["psw"])) {
     $psw = $_POST["psw"];
     echo "ssssss";
     if (empty($uname) || empty($psw)) {
-        header("Location: ../login_index.php?mess=error");
+        header("Location: ../view_login/login_index.php?mess=error");
     } else {
 
         $users = $conn->prepare("SELECT * FROM users WHERE email=?");
@@ -19,24 +19,24 @@ if (isset($_POST["uname"]) || isset($_POST["psw"])) {
         // print_r($user);
         // echo '</pre>';
         if (empty($user)) {
-            header("Location: ../login_index.php?mess=Email does not exist");
+            header("Location: ../view_login/login_index.php?mess=Email does not exist");
             exit;
         } else {
             $email = $user['email'];
             if ($psw != $user['password']) {
-                header("Location: ../login_index.php?mess=password is not correct");
+                header("Location: ../view_login/login_index.php?mess=password is not correct");
                 exit;
             } else {
                 $userid = $user['user_id'];
                 $userName = $user['names'];
                 $_SESSION["userid"] = $userid;
                 $_SESSION["userName"] = $userName;
-                header("Location: ../todo_index.php?messe=Logged in successfully");
+                header("Location: ../view_todo/todo_index.php?messe=Logged in successfully");
             }
         }
         $conn = null;
         exit();
     }
 } else {
-    header("Location: ../todo_index.php?mess=error");
+    header("Location: ../view_todo/todo_index.php?mess=error");
 }

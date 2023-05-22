@@ -22,6 +22,7 @@ form {
 }
 
 /* Full-width inputs */
+input[type="email"],
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -30,6 +31,9 @@ input[type="password"] {
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+input {
+  outline: none;
 }
 
 /* Set a style for all buttons */
@@ -87,10 +91,11 @@ span.psw {
     width: 100%;
   }
 }
-
-.register {
-  padding-left: 20px;
-  margin-bottom: 10px;
+.next_page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 15px 10px 15px;
 }
 
 .erro {

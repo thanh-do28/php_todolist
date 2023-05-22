@@ -14,7 +14,7 @@ if (isset($_POST["name"]) || isset($_POST["email"]) || isset($_POST["psw"]) || i
     // echo $psw;
     // echo $psw_repeat;
     if (empty($name) || empty($email) || empty($psw) || empty($psw_repeat)) {
-        header("Location: ../register_index.php?mess=error");
+        header("Location: ../view_register/register_index.php?mess=error");
     } else {
         $users = $conn->prepare("SELECT email FROM users WHERE email=?");
         $users->execute([$email]);
@@ -25,19 +25,19 @@ if (isset($_POST["name"]) || isset($_POST["email"]) || isset($_POST["psw"]) || i
         // echo '</pre>';
         // echo $user["email"];
         if (!empty($user["email"])) {
-            header("Location: ../register_index.php?mess=errore");
+            header("Location: ../view_register/register_index.php?mess=errore");
             exit;
         } else {
             if ($psw != $psw_repeat) {
-                header("Location: ../register_index.php?mess=error");
+                header("Location: ../view_register/register_index.php?mess=error");
             } else {
                 $sql = "INSERT INTO users(names,email,password) VALUE(?,?,?)";
                 $statement = $conn->prepare($sql);
                 $res = $statement->execute([$name, $email, $psw]);
                 if ($res) {
-                    header("Location: ../todo_index.php?mess=Sign Up Success");
+                    header("Location: ../view_todo/todo_index.php?mess=Sign Up Success");
                 } else {
-                    header("Location: ../todo_index.php");
+                    header("Location: ../view_todo/todo_index.php");
                 }
                 $conn = null;
                 exit();

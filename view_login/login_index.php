@@ -12,14 +12,15 @@
 <body>
     <div class="body">
         <div class="container_login">
-            <form action="/php_todolist/php/login.php" method="post">
+            <form action="../php/login.php" method="post">
                 <div class="imgcontainer">
-                    <img src="./img/none-avatar.png" alt="Avatar" class="avatar">
+                    <img src="../img/none-avatar.png" alt="Avatar" class="avatar">
+                    <h4>user login</h4>
                 </div>
 
                 <div class="container">
                     <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    <input type="email" placeholder="Enter Username" name="uname" required>
 
                     <?php if (isset($_GET['mess']) && $_GET['mess'] == 'Email does not exist') { ?>
                         <h4 class="erro">Email does not exist</h4>
@@ -37,7 +38,11 @@
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                 </div>
-                <div class="register">Do not have an account register here <a href="/php_todolist/register_index.php">Click Here</a></div>
+                <div class="next_page">
+                    <div class="register">Do not have an account register here <a href="/php_todolist/view_register/register_index.php">Click Here</a></div>
+                    <div class="login_admin"> Admin access <a href="/php_todolist/view_loginAdmin/login_admin.php">Click Here</a></div>
+                </div>
+
                 <div class="container" style="background-color:#f1f1f1">
                     <button type="button" class="cancelbtn">Cancel</button>
                     <span class="psw">Forgot <a href="#">password?</a></span>
@@ -45,11 +50,11 @@
             </form>
         </div>
     </div>
-    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script src="../js/jquery-3.7.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $(".cancelbtn").click(function() {
-                document.location.href = "/php_todolist/todo_index.php";
+                document.location.href = "/php_todolist/view_todo/todo_index.php";
             })
         })
     </script>

@@ -1,5 +1,5 @@
 <?php
-require 'db_todos.php';
+require '../db_todos.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ session_start();
         <div class="body1">
             <div class="user">
                 <div class="img">
-                    <img src="./img/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="">
+                    <img src="../img/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="">
                     <?php if (empty($_SESSION["userName"])) { ?>
                         <span class="name">USER</span>
                     <?php } else { ?>
@@ -27,9 +27,9 @@ session_start();
                     <?php } ?>
                 </div>
                 <div class="sign_up_login">
-                    <a href="/php_todolist/login_index.php">login</a>
+                    <a <?php echo (empty($_SESSION["userid"])) ? "href='/php_todolist/view_login/login_index.php'" : "href=''" ?>>login</a>
                     <?php if (empty($_SESSION["userid"])) { ?>
-                        <a href="/php_todolist/register_index.php">register</a>
+                        <a href="/php_todolist/view_register/register_index.php">register</a>
                     <?php } else { ?>
                         <a href="/php_todolist/php/logout.php">logout</a>
                     <?php } ?>
@@ -37,7 +37,7 @@ session_start();
             </div>
 
             <div class='container1'>
-                <form id="presently" class='form' action="php/insert.php" method="POST" autocomplete="off">
+                <form id="presently" class='form' action="../php/insert.php" method="POST" autocomplete="off">
                     <label>
                         <input type="text" placeholder="What do you need to do?" name="title"></input>
                     </label>
@@ -49,7 +49,7 @@ session_start();
                     <?php } ?>
                     <button type="submit">Add &nbsp; <span>&#43;</span></button>
                 </form>
-                <form id="hide" class='form' action="php/update_title.php" method="POST" autocomplete="off">
+                <form id="hide" class='form' action="../php/update_title.php" method="POST" autocomplete="off">
                     <label>
                         <input type="text" placeholder="What do you need to do?" name="titleUpdate"></input>
                         <input type="number" style="display: none;" name="id"></input>
@@ -79,14 +79,14 @@ session_start();
                 ?>
                 <?php if (empty($todos)) { ?>
                     <div class="todoList">
-                        <img src="./img/to-do-7214069__340.webp" alt="" />
+                        <img src="../img/to-do-7214069__340.webp" alt="" />
                         <h2>Add your first todo</h2>
                         <p>What do you want to get done today?</p>
                     </div>
                     <?php } else {
                     if ($todos->rowCount() <= 0) { ?>
                         <div class="todoList">
-                            <img src="./img/to-do-7214069__340.webp" alt="" />
+                            <img src="../img/to-do-7214069__340.webp" alt="" />
                             <h2>Add your first todo</h2>
                             <p>What do you want to get done today?</p>
                         </div>
@@ -118,14 +118,14 @@ session_start();
                 } ?>
             </div>
 
-            <script src="./js/jquery-3.7.0.min.js"></script>
+            <script src="../js/jquery-3.7.0.min.js"></script>
 
             <script>
                 // update checked
                 $(document).ready(function() {
                     $(".check-box").click(function() {
                         const id = $(this).attr("todo_id")
-                        document.location.href = `php/update.php?id=${id}`
+                        document.location.href = `../php/update.php?id=${id}`
                         // console.log(id);
 
                     })
@@ -137,7 +137,7 @@ session_start();
                     $(".remove-to-do").click(function() {
                         const id = $(this).attr("id")
                         // console.log(id);
-                        document.location.href = `php/delete.php?id=${id}`
+                        document.location.href = `../php/delete.php?id=${id}`
 
                         $(this).parent().hide(600);
 
@@ -170,7 +170,6 @@ session_start();
                             out = !out
                         }
                         console.log(out);
-
                     })
 
                 })

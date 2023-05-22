@@ -45,19 +45,19 @@
                         <button type="button" class="cancelbtn">Cancel</button>
                         <button type="submit" class="signupbtn">Sign Up</button>
                     </div>
-                    <div>Already have an account to login <a href="/php_todolist/login_index.php">Click Here</a></div>
+                    <div>Already have an account to login <a href="/php_todolist/view_login/login_index.php">Click Here</a></div>
                 </div>
 
             </form>
         </div>
     </div>
 
-    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script src="../js/jquery-3.7.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $(".cancelbtn").click(function() {
                 console.log("aaa");
-                document.location.href = "/php_todolist/todo_index.php";
+                document.location.href = "/php_todolist/view_todo/todo_index.php";
             })
         })
     </script>

@@ -1,0 +1,374 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Reseting CSS
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * Styling navigation bar for large screen devices
+  */
+.container {
+  width: 100%;
+}
+.container_nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+.navbar {
+  width: 100%;
+  background: Black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add_user {
+  width: 70px;
+  height: 30px;
+  border: none;
+  color: white;
+  font-size: 95%;
+  border-radius: 5px;
+  background-color: #04aa6d;
+}
+
+.navbar-left {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.navbar-right {
+  display: inline-block;
+  margin-right: 100px;
+  top: 0;
+  right: 0;
+  font-size: 150%;
+}
+.navbar-right a {
+  text-decoration: none;
+  color: white;
+}
+.navbar-brand {
+  width: 150px;
+  text-align: center;
+}
+.navbar-brand,
+.navbar .nav-link {
+  color: White;
+  text-decoration: none;
+
+  display: inline-block;
+  padding: 15px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+
+  padding-left: 30px;
+  padding-right: 30px;
+
+  background: RoyalBlue;
+}
+
+.navbar .nav-link:hover {
+  color: LightGray;
+}
+
+.navbar-collapse,
+.navbar-toggler {
+  display: none;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * Override styles to support mobile devices
+  */
+
+@media (max-width: 842px) {
+  .navbar-right,
+  .navbar-left {
+    display: block;
+    border-top: 1px solid DimGray;
+  }
+
+  .navbar-right {
+    position: static;
+  }
+
+  .navbar .nav-link {
+    display: block;
+  }
+
+  .navbar-collapse:checked + .navbar {
+    max-height: 50px;
+    overflow: hidden;
+  }
+
+  .navbar-toggler {
+    color: White;
+    border-left: 1px solid DimGray;
+
+    display: inline-block;
+    padding: 15px 25px;
+
+    top: 0;
+    right: 0;
+
+    cursor: pointer;
+  }
+} /* @media */
+.tool_table {
+  margin-top: 55px;
+  width: 100%;
+  display: flex;
+}
+
+.container_user {
+  overflow-y: scroll;
+  width: 50%;
+  max-height: 600px;
+}
+.container_user::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.container_user::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.container_user::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: red;
+}
+.container_user table {
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid #999;
+  padding: 20px 10px;
+}
+td {
+  background: gray;
+  color: white;
+}
+.primary {
+  background-color: brown;
+}
+th {
+  color: white;
+  padding: 10px 0px;
+}
+.user_id {
+  width: 55px;
+}
+.edit {
+  width: 85px;
+}
+.detail {
+  width: 65px;
+}
+.todo_id {
+  width: 55px;
+}
+.checked {
+  width: 100px;
+}
+
+.container_todo {
+  overflow-y: scroll;
+  width: 50%;
+  max-height: 600px;
+}
+.container_todo::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.container_todo::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.container_todo::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: red;
+}
+
+.container_todo table {
+  width: 100%;
+}
+.container_todo .check-box {
+  width: 50%;
+}
+.container_todo .td_button_insert_todo {
+  background-color: white;
+  text-align: center;
+  padding: 5px 10px;
+  height: 40px;
+}
+.container_todo .td_button_insert_todo button {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #04aa6d;
+}
+
+.container .todoList {
+  text-align: center;
+}
+.container .todoList img {
+  width: 40%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container_update {
+  width: 600px;
+  height: 300px;
+  background-color: rgb(237, 237, 245);
+  position: -webkit-sticky;
+  position: fixed;
+  top: 150px;
+  left: 30%;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.updata_sow {
+  display: none;
+}
+
+.input_form {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  width: 95%;
+}
+.input_form .row {
+  margin-right: 20px;
+  width: 20%;
+  padding-left: 25px;
+}
+.input_form .row1 {
+  width: 80%;
+}
+.col {
+  height: 35px;
+  margin: 10px 0px;
+}
+.col-25 {
+  width: 30%;
+}
+.col-75 {
+  width: 100%;
+}
+label,
+input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.row_button {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+.row_button button {
+  width: 70px;
+  height: 30px;
+  border: none;
+  color: white;
+  font-size: 95%;
+  border-radius: 5px;
+}
+.row_button .button_canceluser {
+  background-color: red;
+}
+.row_button .button_submituser {
+  background-color: #04aa6d;
+}
+
+.container_add {
+  width: 600px;
+  height: 300px;
+  background-color: rgb(237, 237, 245);
+  position: -webkit-sticky;
+  position: fixed;
+  top: 150px;
+  left: 30%;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.add_sow {
+  display: none;
+}
+
+.container_update_todo {
+  width: 600px;
+  height: 200px;
+  background-color: rgb(237, 237, 245);
+  position: -webkit-sticky;
+  position: fixed;
+  top: 150px;
+  left: 30%;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.update_todo_sow {
+  display: none;
+}
+.row_button .button_canceltodo {
+  background-color: red;
+}
+.row_button .button_submittodo {
+  background-color: #04aa6d;
+}
+
+.container_insert_todo {
+  width: 600px;
+  height: 200px;
+  background-color: rgb(237, 237, 245);
+  position: -webkit-sticky;
+  position: fixed;
+  top: 150px;
+  left: 30%;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.insert_sow {
+  display: none;
+}
+.container_thongbao {
+  width: 300px;
+  height: 50px;
+  background-color: rgb(237, 237, 245);
+  position: fixed;
+  top: 150px;
+  left: 40%;
+  text-align: center;
+  font-size: 160%;
+  color: red;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
