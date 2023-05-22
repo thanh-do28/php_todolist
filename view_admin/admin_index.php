@@ -262,9 +262,8 @@ session_start();
 
                 </div>
                 <div class="row1">
-                    <div class="col col-75"> <input type="text" id="title_todo" name="title_up_todo"> </div>
-                    <input type="number" style="display: none;" name="id_todo_user"></input>
-                    <input type="number" style="display: none;" name="id_todo"></input>
+                    <div class="col col-75"> <input type="text" id="isert_title_todo" name="title_insert_todo"> </div>
+                    <input type="number" style="display: none;" name="id_todo_in_user"></input>
                 </div>
             </div>
             <div class="row_button">
@@ -366,6 +365,8 @@ session_start();
                 $('input[name=id_todo]').val("")
                 $('input[name=id_todo_user]').val("")
                 $('input[name=title_up_todo]').val("")
+                $('input[name=title_insert_todo]').val("")
+                $('input[name=id_todo_in_user]').val("")
                 $(".insert_sow").css("display", "none");
                 $(".update_todo_sow").css("display", "none");
             })
@@ -386,7 +387,7 @@ session_start();
             $(".insert_todo").click(function() {
                 const id_user = $(this).attr('user_id');
                 console.log(id_user);
-                // $('input[name=id_todo_user]').val(id_user)
+                $('input[name=id_todo_in_user]').val(id_user)
                 $(".insert_sow").css("display", "block");
             })
         })
