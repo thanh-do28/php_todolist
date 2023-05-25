@@ -117,63 +117,65 @@ session_start();
                 <?php }
                 } ?>
             </div>
+        </div>
+    </div>
 
-            <script src="../js/jquery-3.7.0.min.js"></script>
+    <script src="../js/jquery-3.7.0.min.js"></script>
 
-            <script>
-                // update checked
-                $(document).ready(function() {
-                    $(".check-box").click(function() {
-                        const id = $(this).attr("todo_id")
-                        document.location.href = `../php/update.php?id=${id}`
-                        // console.log(id);
+    <script>
+        // update checked
+        $(document).ready(function() {
+            $(".check-box").click(function() {
+                const id = $(this).attr("todo_id")
+                document.location.href = `../php/update.php?id=${id}`
+                // console.log(id);
 
-                    })
-                })
+            })
+        })
 
-                // delete
+        // delete
 
-                $(document).ready(function() {
-                    $(".remove-to-do").click(function() {
-                        const id = $(this).attr("id")
-                        // console.log(id);
-                        document.location.href = `../php/delete.php?id=${id}`
+        $(document).ready(function() {
+            $(".remove-to-do").click(function() {
+                const id = $(this).attr("id")
+                // console.log(id);
+                document.location.href = `../php/delete.php?id=${id}`
 
-                        $(this).parent().hide(600);
+                $(this).parent().hide(600);
 
-                        $("#presently").css("display", "block");
-                        $("#hide").css("display", "none");
-                        $('input[name=titleUpdate]').val("")
-                    })
-                })
+                $("#presently").css("display", "block");
+                $("#hide").css("display", "none");
+                $('input[name=titleUpdate]').val("")
+            })
+        })
 
-                // update_title
-                $(document).ready(function() {
-                    let out = true
-                    $(".iedit-to-do").click(function() {
-                        if (out) {
-                            const id = $(this).attr("id")
-                            const title = $(`#title_value${id}`).text()
-                            $('input[name=titleUpdate]').val(title)
-                            $('input[name=id]').val(id)
-                            $("#presently").css("display", "none");
-                            $("#hide").css("display", "block");
-                            out = !out
-                            console.log(id);
-                            // console.log(title);
+        // update_title
+        $(document).ready(function() {
+            let out = true
+            $(".iedit-to-do").click(function() {
+                if (out) {
+                    const id = $(this).attr("id")
+                    const title = $(`#title_value${id}`).text()
+                    $('input[name=titleUpdate]').val(title)
+                    $('input[name=id]').val(id)
+                    $("#presently").css("display", "none");
+                    $("#hide").css("display", "block");
+                    out = !out
+                    console.log(id);
+                    // console.log(title);
 
-                        } else if (!out) {
-                            $("#presently").css("display", "block");
-                            $("#hide").css("display", "none");
-                            $('input[name=titleUpdate]').val("")
-                            $('input[name=id]').val("")
-                            out = !out
-                        }
-                        console.log(out);
-                    })
+                } else if (!out) {
+                    $("#presently").css("display", "block");
+                    $("#hide").css("display", "none");
+                    $('input[name=titleUpdate]').val("")
+                    $('input[name=id]').val("")
+                    out = !out
+                }
+                console.log(out);
+            })
 
-                })
-            </script>
+        })
+    </script>
 </body>
 
 </html>
